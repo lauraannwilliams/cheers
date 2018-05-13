@@ -9,10 +9,10 @@ module Cheers
     
     attr_reader :color, :image
     
-    def initialize(canvas, color_randomizer, image_randomizer = nil)
+    def initialize(canvas, color_randomizer, bg_colors, colors, image_randomizer = nil)
       super
       
-      @color = ContrastingColorPicker.new(Avatar::COMPONENT_COLORS, extract_background_color(canvas)).pick(color_randomizer)
+      @color = ContrastingColorPicker.new(colors, extract_background_color(canvas)).pick(color_randomizer)
       @image = IMAGES.sample random: self.image_randomizer
     end
 

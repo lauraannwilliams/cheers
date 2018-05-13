@@ -1,11 +1,13 @@
 module Cheers
   class Component
     
-    attr_reader :canvas, :randomizer
+    attr_reader :canvas, :color_randomizer, :bg_colors, :colors
     
-    def initialize(canvas, randomizer)
+    def initialize(canvas, color_randomizer, bg_colors, colors)
       @canvas     = canvas
-      @randomizer = randomizer
+      @color_randomizer = color_randomizer
+      @bg_colors = bg_colors
+      @colors = colors
     end
 
     def image_path(component)
@@ -43,7 +45,6 @@ module Cheers
     end
 
     def apply
-      puts "Applying #{self.class.name}"
       color = self.color
       composite_with_mask(canvas, colored_image(color), image)
     end

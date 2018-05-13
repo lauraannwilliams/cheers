@@ -11,20 +11,18 @@ module Cheers
     
     attr_reader :background_color, :glow_color, :glow_image, :mask_image
     
-    def initialize(canvas, color_randomizer, element_randomizer = nil)
+    def initialize(canvas, color_randomizer, bg_colors, colors, element_randomizer = nil)
       super
 
       canvas_background = extract_background_color(canvas)
       
-      @background_color = ContrastingColorPicker.new(Avatar::BACKGROUND_COLORS, canvas_background).pick(color_randomizer)
-      @glow_color = ContrastingColorPicker.new(Avatar::COMPONENT_COLORS, canvas_background, background_color).pick(color_randomizer)
+      @background_color = ContrastingColorPicker.new(bg_colors, canvas_background).pick(color_randomizer)
+      @glow_color = ContrastingColorPicker.new(colors, canvas_background, background_color).pick(color_randomizer)
       @glow_image = GLOW_IMAGES.sample random: element_randomizer.dup
       @mask_image = MASK_IMAGES.sample random: element_randomizer.dup
     end
     
     def apply
-      puts "Applying #{self.class.name}"
-
       glow_color       = self.glow_color
       background_color = self.background_color
 

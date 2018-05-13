@@ -2,11 +2,9 @@ module Cheers
   class Face < ImageComponent
     
     def apply
-      puts "Applying #{self.class.name}"
-
-      wip = canvas
+       wip = canvas
       [UpperGlow, LowerGlow, Texture, Mouth].each do |klass|
-        wip = klass.new(wip, color_randomizer, image_randomizer.dup).apply
+        wip = klass.new(wip, color_randomizer, bg_colors, colors, image_randomizer.dup).apply
       end
 
       wip

@@ -13,8 +13,10 @@ module Cheers
                             #0e788b #239340)
     
     # Creates a new avatar from the seed string
-    def initialize(seed)
+    def initialize(seed, bg_colors = nil, colors  = nil)
       @seed = Digest::SHA1.hexdigest(seed).to_i(16)
+      @bg_colors = bg_colors || Avatar::BACKGROUND_COLORS
+      @colors = colors || Avatar::COMPONENT_COLORS
     end
     
     # Writes avatar image at the provided file path
@@ -41,7 +43,7 @@ module Cheers
 
       result = nil
       [Background, Face, Decoration, Eyes].each do |klass|
-        result = klass.new(result, generator).apply
+        result = klass.new(result, generator, @bg_colors, @colors).apply
       end
 
       result

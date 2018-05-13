@@ -5,7 +5,7 @@ module Cheers
     
     attr_reader :color, :image
     
-    def initialize(canvas, color_randomizer, element_randomizer = nil)
+    def initialize(canvas, color_randomizer, bg_colors, colors, element_randomizer = nil)
       super
       
       @image = IMAGES.sample random: element_randomizer

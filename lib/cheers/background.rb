@@ -3,10 +3,10 @@ module Cheers
 
     attr_reader :color
 
-    def initialize(canvas, randomizer)
+    def initialize(canvas, color_randomizer, bg_colors, colors)
       super
 
-      @color = Avatar::BACKGROUND_COLORS.sample(random: randomizer)
+      @color = bg_colors.sample(random: color_randomizer)
     end
 
     def apply
